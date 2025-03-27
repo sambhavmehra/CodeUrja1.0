@@ -1,0 +1,101 @@
+/* ======================
+   Custom Enhanced Styles
+   ====================== */
+
+   :root {
+    --primary-accent: #2a2a2a;
+    --secondary-accent: #4a4a4a;
+    --transition-timing: 0.3s ease-in-out;
+  }
+  
+  .hr-divider {
+    position: relative;
+    margin: 2.5rem 0;
+    height: 2px;
+    border: none;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--primary-accent) 50%,
+      transparent 100%
+    );
+    opacity: 0.8;
+    transition: opacity var(--transition-timing);
+  }
+  
+  .hr-divider::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background: var(--primary-accent);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .wait-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: linear-gradient(145deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .wait-text {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 1.25rem;
+    color: var(--secondary-accent);
+    letter-spacing: 0.03em;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  
+  .wait-text::before {
+    content: '⏳';
+    position: absolute;
+    left: -1.2em;
+    animation: pulse 1.5s infinite;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+  }
+  
+  /* ======================
+     Responsive Design
+     ====================== */
+  
+  @media (max-width: 768px) {
+    .wait-state {
+      margin: 1rem;
+      padding: 1.5rem;
+    }
+    
+    .hr-divider::after {
+      width: 10px;
+      height: 10px;
+    }
+  }
